@@ -70,7 +70,7 @@ public class Llibre {
 
 	@Override
 	public String toString() {
-		return "Llibre [idLlibre=" + idLlibre + ", nomLlibre=" + nomLlibre + ", editorial=" + editorial+"]";
+		return "Llibre [idLlibre=" + idLlibre + ", nomLlibre=" + nomLlibre + ", editorial=" + editorial+", autor = "+autor+"]";
 	}
 	
 	
