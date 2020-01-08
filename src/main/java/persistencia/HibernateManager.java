@@ -19,24 +19,54 @@ private static EntityManager manager;
 	public static void main(String[] args) {
 		
 		Autor a = new Autor(1,"Pepe");
+		Autor a2 = new Autor(2,"Jose");
+
 		Biblioteca b = new Biblioteca(1,"Josep Tarradelles");
+		Biblioteca b2 = new Biblioteca(2,"Biblioteca los libros");
+
 		Llibre l = new Llibre(1,"Canigó","Barcino",a);
-		//Llibre l = new Llibre(1,"Canigó","Barcino","prueba");
+		Llibre l2 = new Llibre(2,"barco de luz","La galera",a2);
+
 		Persona p = new Persona(46532,"Jacint Verdaguer","63345465");
-		
+		Persona p2 = new Persona(63529,"Socrates","633456566");
+
 		emf = Persistence.createEntityManagerFactory("persistencia");
 		manager = emf.createEntityManager();
 		
 		manager.getTransaction().begin();
 		
 		manager.persist(a);
+		manager.persist(a2);
+		a.setNomAutor("Paco");
+		
 		manager.persist(b);
+		manager.persist(b2);
+		b.setNom("Biblioteca Cornella");
+		
 		manager.persist(l);
+		manager.persist(l2);
+		l.setEditorial("Batrcanova");
+		
 		manager.persist(p);
+		manager.persist(p2);
+		p.setTelefon("64444444");
 
 		manager.getTransaction().commit();
 		
 		imprimir();
+		
+		manager.getTransaction().begin();
+		
+		manager.remove(a2);
+		manager.remove(b2);
+		manager.remove(l2);
+		manager.remove(p2);
+
+		manager.getTransaction().commit();
+		
+		System.out.println("------------------------------");
+		imprimir();
+		
 		manager.close();
 				
 	}
